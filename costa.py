@@ -8,7 +8,7 @@ from datetime import datetime
 async def scrape_cruise_listings():
     async with async_playwright() as p:
         print("Launching browser...")
-        browser = await p.chromium.launch(headless=False)  # Set to True for headless
+        browser = await p.chromium.launch(headless=True)  # Set to True for headless
         page = await browser.new_page()
         
         print("Navigating to the page...")
