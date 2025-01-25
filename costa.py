@@ -8,17 +8,17 @@ async def scrape_cruise_listings():
     async with async_playwright() as p:
         print("Launching browser...")
         try:
-            browser = await p.chromium.launch(headless=True)  # Headless mode for deployment
+            browser = await p.chromium.launch(headless=False)  # Headless mode for deployment
             page = await browser.new_page()
             
             print("Navigating to the Costa Cruises page...")
             await page.goto(
                 'https://www.costacruises.co.uk/cruises.html?page=1#{!tag=destinationTag}destinationIds=PE&occupancy_GBP_anonymous=A&guestAges=30&guestBirthdates=1995-01-25&group.sort=departDate%20asc',
-                timeout=60000
+                timeout=10000
             )
             
             print("Waiting for cruise tiles to load...")
-            await page.wait_for_selector('.costa-itinerary-tile', timeout=60000)
+            await page.wait_for_selector('.costa-itinerary-tile', timeout=10000)
             
             cruise_tiles = await page.query_selector_all('.costa-itinerary-tile')
             print(f"Found {len(cruise_tiles)} cruise tiles.")
