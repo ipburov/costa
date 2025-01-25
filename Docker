@@ -25,7 +25,7 @@ COPY requirements.txt /app
 RUN pip install -r requirements.txt
 
 # Install Playwright and the required browser dependencies
-RUN python -m playwright install --with-deps
+RUN python3 -m playwright install --with-deps
 
 # Expose the port your app will use
 EXPOSE 8080
